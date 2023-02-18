@@ -3,7 +3,7 @@ ADD . /build
 WORKDIR /build
 RUN mvn clean install -DskipTests
 
-FROM openjdk:11-jdk
+FROM openjdk:11.0.16-jdk-slim-buster
 VOLUME /tmp
 COPY --from=0 "/build/target/bizvest-service-*-SNAPSHOT.jar" app.jar
 CMD ["java","-Dspring.profiles.active=prod","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
